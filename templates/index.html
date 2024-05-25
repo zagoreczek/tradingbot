@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Trading Bot</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Trading Bot</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logs">Logs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/connect">Connect</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/top-signals">Top Sygnały</a>
+                </li>
+            </ul>
+            <span class="navbar-text ml-auto">
+                Status: {{ status }}
+            </span>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h1>Predict Price</h1>
+        <form id="predict-form" class="mt-3">
+            <div class="form-group">
+                <label for="symbol">Symbol</label>
+                <input type="text" id="symbol" class="form-control" list="symbols" placeholder="Wpisz symbol...">
+                <datalist id="symbols">
+                    {% for symbol in symbols %}
+                        <option value="{{ symbol }}">{{ symbol }}</option>
+                    {% endfor %}
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label for="interval">Interwał</label>
+                <select class="form-control" id="interval" name="interval">
+                    <option value="1m">1 minuta</option>
+                    <option value="5m">5 minut</option>
+                    <option value="15m">15 minut</option>
+                    <option value="30m">30 minut</option>
+                    <option value="1h">1 godzina</option>
+                    <option value="2h">2 godziny</option>
+                    <option value="4h">4 godziny</option>
+                    <option value="6h">6 godzin</option>
+                    <option value="8h">8 godzin</option>
+                    <option value="12h">12 godzin</option>
+                    <option value="1d">1 dzień</option>
+                    <option value="3d">3 dni</option>
+                    <option value="1w">1 tydzień</option>
+                    <option value="1M">1 miesiąc</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" id="predict-btn">Predict</button>
+        </form>
+        <div class="row mt-4">
+            <div class="col-md-8">
+                <h2>Wynik predykcji</h2>
+                <img id="predict-image" class="img-fluid" src="" alt="Prediction">
+            </div>
+            <div class="col-md-4">
+                <h2>Sygnały</h2>
+                <ul id="signal-commentary" class="signal-list"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('predict-btn').addEventListener('click', async function() {
+            const symbol = document.getElementById('symbol').value;
+            const interval = document.getElementById('interval').value;
+
+            console.log('Sending request:', { symbol, interval });
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ symbol, interval }),
+            });
+
+            console.log('Received response:', response);
+
+            const result = await response.json();
+            console.log('Result:', result);
+
+            if (result.error) {
+                alert(`Error: ${result.error}`);
+            } else {
+                document.getElementById('predict-image').src = 'data:image/png;base64,' + result.image;
+                document.getElementById('signal-commentary').innerHTML = generateSignalCommentary(result.signal, result.tp, result.sl, result.tp_percentage, result.sl_percentage, result.estimated_tp_time, result.tp_probability);
+            }
+        });
+
+        function generateSignalCommentary(signal, tp, sl, tp_percentage, sl_percentage, estimated_tp_time, tp_probability) {
+            if (!signal) {
+                return "<li class='list-group-item'>Brak sygnału.</li>";
+            }
+            let signalClass = signal === 'BUY' ? 'signal-buy' : 'signal-sell';
+            let commentary = `<li class="list-group-item ${signalClass} signal-header">Sygnał: ${signal}</li>`;
+            commentary += `<li class="list-group-item signal-value">Take Profit: ${tp.toFixed(2)} (${tp_percentage.toFixed(2)}%)</li>`;
+            commentary += `<li class="list-group-item signal-value">Stop Loss: ${sl.toFixed(2)} (${sl_percentage.toFixed(2)}%)</li>`;
+            commentary += `<li class="list-group-item signal-value">Procent Zysku: ${tp_percentage.toFixed(2)}%</li>`;
+            commentary += `<li class="list-group-item signal-value">Procent Straty: ${sl_percentage.toFixed(2)}%</li>`;
+            commentary += `<li class="list-group-item signal-value">Przewidywany czas osiągnięcia TP: ${new Date(estimated_tp_time).toLocaleString()}</li>`;
+            commentary += `<li class="list-group-item signal-value">Szansa osiągnięcia TP: ${tp_probability.toFixed(2)}%</li>`;
+            return commentary;
+        }
+
+        document.getElementById('symbol').addEventListener('input', function() {
+            const filter = this.value.toUpperCase();
+            const dataList = document.getElementById('symbols');
+            const options = dataList.getElementsByTagName('option');
+
+            for (let i = 0; i < options.length; i++) {
+                const txtValue = options[i].value;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    options[i].style.display = '';
+                } else {
+                    options[i].style.display = 'none';
+                }
+            }
+
+            if (filter === '') {
+                for (let i = 0; i < options.length; i++) {
+                    options[i].style.display = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

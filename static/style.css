@@ -1,0 +1,90 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+nav {
+    background-color: #343a40;
+}
+
+.navbar-brand, .nav-link, .navbar-text {
+    color: #ffffff !important;
+}
+
+.container {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.btn {
+    background-color: #343a40;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #495057;
+}
+
+#predict-result {
+    margin-top: 20px;
+}
+
+#predict-result img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.signal-buy {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.signal-sell {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.signal-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.signal-list li {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.signal-list .signal-header {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.signal-list .signal-value {
+    font-size: 1em;
+}

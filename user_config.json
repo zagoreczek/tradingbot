@@ -1,0 +1,33 @@
+{
+  "AccountIndex" : 52958001,
+  "AccountIdHash" : "2f931392592fab0091b8935ad8b020c3423207fd164a506bce694ce191605118",
+  "TotalEquity" : 19653174099200000,
+  "TotalDebt" : 0,
+  "Assets" : [ {
+    "Index" : 2,
+    "Equity" : 319062,
+    "Debt" : 0
+  }, {
+    "Index" : 3,
+    "Equity" : 2000000,
+    "Debt" : 0
+  }, {
+    "Index" : 113,
+    "Equity" : 10000000,
+    "Debt" : 0
+  }, {
+    "Index" : 183,
+    "Equity" : 2,
+    "Debt" : 0
+  }, {
+    "Index" : 184,
+    "Equity" : 1,
+    "Debt" : 0
+  }, {
+    "Index" : 260,
+    "Equity" : 8,
+    "Debt" : 0
+  } ],
+  "Root" : "2de93f01fee7ef6e04270ac11131ba6ab258c07db12654d73ee4d950822f42b1",
+  "Proof" : [ "H6xvUah4zdqr4hUUNNwBK9KdlRdAE4uKARNvTnDteM0=", "GUtwSJzL/JQp3QKAK/IxryY59EYaw3ujUqwznnZap4Y=", "A1XBr8p9pzvQ7TG1P81k08zo0HhOfgcOgeHsW5nt9F0=", "AjVb04oJas8Ntn0GEG6gTBSphxM7xKWOSS1Ou/wxHZ4=", "JN5njClbeBjaah2HFtzs0yblaJi1A9AtWUIfTP5MWlg=", "DBh/u4PcJ+QwSj1US1iEHC3crp/gt0oPu/rsVwBN3x0=", "FVaxdVYfmg2Q/jPcSN3Lwwxf6QFCqUA3yXBRmH1RYfk=", "EWc/IhZ2EuUPDI3Ar75Vs7CHaN74z/pjSaZanpHXg2w=", "DTDRr/AGfWVsF3Xreh2yaX7KmTBZFU+5Xr0DiU1m3ms=", "EjRXRN6NtIk0HH/yD0kQBbgH82Dhfx5RCMKQMiLdSQA=", "DCMbCpaIOQwQSKc4GJrXtiUHDtPwaFBgdXGB5omqnMU=", "Ld/9UCo8YhNDSvMS6qu9bJY/Q7EHZtdBJAII/9lIBac=", "Jeb1i9leLg6wFR7dfsncG3neg5HXTdhbMhFIXN3/gD4=", "IlxTjO//+ZEFNHf0gVcL0Dki8Kzht0CQEudgOqvUlSQ=", "ABvADHiBjlUSvIiZyahIbTnPuBFtfkXhDe7v14h65+o=", "L0tKvFu+GUkF/jxkGoZBgNcOk561fxmba4kGhl0iqMU=", "IMku+/vUp/OIMzSZRedfRU0F1iHqjSx0ZR/jsc4dklU=", "IzEUcIKdeQwrj3kC5CzCXNMFAJklOzWsHoNdULPz9Fg=", "KXEswCpLO14t6yINxD84BbOhoHjU+B7c88ttsljCvOs=", "BnEsTPwtiXT1IjcSygmVO77yViwxQuK30Cg8wTsXihw=", "KXAPonOzGGP8wGl8+YX5QJ4hEmH6Noj2Bmof2XDFmZ4=", "EqjSClnEFh0lIxHSC0wMgjgGDI6bbY6/G2i0ZSzmL8c=", "JMI/t4UN7+uk2jC43AYuOHphEOBxshdd8ZWK8RxwLR4=", "FNz6S0f2+LiMzBNlH5h9oh/yuw0wqj72kquvX0tt04k=", "LutxbKACxE9bMIN5xARh0t4eTC908MkCqB5Zf+e9pKs=", "FgKB1kpUOkwKy4XOtkg/cuebQc0Xpi97jml7IK1EPRY=", "G3j3tGx68tGwEASTdGp53FVLiVKbv9e6NAYoXXX919M=", "FZccOkiNSW8NLDCniDlhv5iB8nemSPBCGmovBe5UdBc=" ]
+}
