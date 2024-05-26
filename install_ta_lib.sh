@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
-# Install TA_Lib from source
+# Install dependencies
+apt-get update
+apt-get install -y build-essential
+apt-get install -y python3-dev
+apt-get install -y libta-lib0-dev
+apt-get install -y libta-lib0
+
+# Install TA_Lib
 pip install numpy
-pip install https://github.com/mrjbq7/ta-lib/archive/refs/tags/TA_Lib-0.4.0.tar.gz
+pip install ta-lib
