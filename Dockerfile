@@ -22,4 +22,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["gunicorn", "app:app"]
+CMD exec gunicorn --bind :$PORT --workers 3 app:app
