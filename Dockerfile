@@ -22,4 +22,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["gunicorn", "your_project_name.wsgi"]
+CMD ["gunicorn", "myproject.wsgi"]
